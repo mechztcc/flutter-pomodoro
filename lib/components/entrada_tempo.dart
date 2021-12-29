@@ -10,7 +10,6 @@ class EntradaTempo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      // crossAxisAlignment: ,
       children: [
         Text(
           this.titulo,
