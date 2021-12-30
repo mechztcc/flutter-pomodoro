@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:pomodoro/store/pomodoro.store.dart';
+import 'package:provider/provider.dart';
 
 class EntradaTempo extends StatelessWidget {
   final int valor;
@@ -7,12 +9,18 @@ class EntradaTempo extends StatelessWidget {
   final void Function()? inc;
   final void Function()? dec;
 
-  const EntradaTempo(
-      {Key? key, required this.valor, required this.titulo, this.inc, this.dec})
-      : super(key: key);
+  const EntradaTempo({
+    Key? key,
+    required this.valor,
+    required this.titulo,
+    this.inc,
+    this.dec,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final store = Provider.of<PomodoroStore>(context);
+
     return Column(
       children: [
         Text(
@@ -35,7 +43,7 @@ class EntradaTempo extends StatelessWidget {
               style: ElevatedButton.styleFrom(
                 shape: CircleBorder(),
                 padding: EdgeInsets.all(15),
-                primary: Colors.red,
+                primary: store.estaTrabalhando() ? Colors.red : Colors.green,
               ),
             ),
             Text(
@@ -52,7 +60,7 @@ class EntradaTempo extends StatelessWidget {
               style: ElevatedButton.styleFrom(
                 shape: CircleBorder(),
                 padding: EdgeInsets.all(15),
-                primary: Colors.red,
+                primary: store.estaTrabalhando() ? Colors.red : Colors.green,
               ),
             ),
           ],
